@@ -11,8 +11,8 @@ namespace DevFreela.Application.Services.Implementations
 {
     public class ProjectService : IProjectService
     {
-        private readonly DevFreelaDBContext _dbContext;
-        public ProjectService(DevFreelaDBContext dbContext)
+        private readonly DevFreelaDbContext _dbContext;
+        public ProjectService(DevFreelaDbContext dbContext)
         {
             _dbContext = dbContext;
         }

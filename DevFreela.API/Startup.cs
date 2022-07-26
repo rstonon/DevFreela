@@ -32,7 +32,7 @@ namespace DevFreela.API
         {
             services.Configure<OpeningTimeOption>(Configuration.GetSection("OpeningTime"));
 
-            services.AddSingleton<DevFreelaDBContext>();
+            services.AddSingleton<DevFreelaDbContext>();
 
             services.AddScoped<IProjectService, ProjectService>();
 

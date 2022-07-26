@@ -11,8 +11,8 @@ namespace DevFreela.Application.Services.Implementations
 {
     public class SkillService : ISkillService
     {
-        private readonly DevFreelaDBContext _dbContext;
-        public SkillService(DevFreelaDBContext dbContext)
+        private readonly DevFreelaDbContext _dbContext;
+        public SkillService(DevFreelaDbContext dbContext)
         {
             _dbContext = dbContext;
         }
