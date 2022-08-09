@@ -1,28 +1,24 @@
 ﻿using Dapper;
-using DevFreela.Application.Services.Interfaces;
 using DevFreela.Application.ViewModels;
-using DevFreela.Infrastructure.Persistence;
+using MediatR;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace DevFreela.Application.Services.Implementations
+namespace DevFreela.Application.Queries.GetAllSkills
 {
-    public class SkillService : ISkillService
+    public class GetAllSkillQueryHandler : IRequestHandler<GetAllSkillsQuery, List<SkillViewModel>>
     {
-        private readonly DevFreelaDbContext _dbContext;
         private readonly string _connectionString;
-        public SkillService(DevFreelaDbContext dbContext, IConfiguration configuration)
+        public GetAllSkillQueryHandler(IConfiguration configuration)
         {
-            _dbContext = dbContext;
             _connectionString = configuration.GetConnectionString("DevFreelaCs");
         }
 
-        public List<SkillViewModel> GetAll()
+        public async Task<List<SkillViewModel>> Handle(GetAllSkillsQuery request, CancellationToken cancellationToken)
         {
             //Dapper
             using (var sqlConnection = new SqlConnection(_connectionString))
@@ -31,10 +27,10 @@ namespace DevFreela.Application.Services.Implementations
 
                 var script = "SELECT Id, Description FROM Skills";
 
-                return sqlConnection.Query<SkillViewModel>(script).ToList();
-            }
+                var skills =  await sqlConnection.QueryAsync<SkillViewModel>(script);
 
-            //=================================================================//
+                return skills.ToList();
+            }
 
             //EF Core
             //var skills = _dbContext.Skills;
