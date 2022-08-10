@@ -17,6 +17,7 @@ namespace DevFreela.API.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             var query = new GetAllSkillsQuery();

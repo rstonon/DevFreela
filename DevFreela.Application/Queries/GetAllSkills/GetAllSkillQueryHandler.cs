@@ -22,7 +22,7 @@ namespace DevFreela.Application.Queries.GetAllSkills
 
         public async Task<List<SkillDTO>> Handle(GetAllSkillsQuery request, CancellationToken cancellationToken)
         {
-            return await _repository.GetAll();
+            return await _repository.GetAllAsync();
 
         }
     }
