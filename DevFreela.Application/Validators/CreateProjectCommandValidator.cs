@@ -18,7 +18,7 @@ namespace DevFreela.Application.Validators
 
             RuleFor(p => p.Title)
                 .MaximumLength(30)
-                .WithMessage("Título de ter no máximo 30 caracteres");
+                .WithMessage("Título deve ter no máximo 30 caracteres");
         }
     }
 }
